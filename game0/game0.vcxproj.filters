@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{971e4ba3-4459-452b-9f4e-cf4fdbbc0884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base">
+      <UniqueIdentifier>{3304f1b4-cbc5-48ba-b3b1-c86ed8c3661a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2797d97c-8798-41c3-8dc8-133946e5a936}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Debug">
+      <UniqueIdentifier>{b3b925be-2a76-4b07-85d8-234a3da1f7be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Math">
+      <UniqueIdentifier>{4e51f18a-ede0-43f1-8b65-ae68348d4236}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Mem">
+      <UniqueIdentifier>{7c112312-b2c2-43f4-9145-1a52196c7a3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Util">
+      <UniqueIdentifier>{cc787589-978a-475c-9cd0-d107b25443c9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Win">
+      <UniqueIdentifier>{86634c3d-16a1-407c-b2aa-059c205bf532}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Win\Obj">
+      <UniqueIdentifier>{9e64eeb3-a667-4618-877a-5122d95d44ea}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\App\Application.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\App\ApplicationManager.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\Math\MathUtil.cpp">
+      <Filter>Base\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\Obj\CheckBox.cpp">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\Obj\RadioButton.cpp">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\Obj\WindowFrame.cpp">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\Obj\Button.cpp">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\FrameLayout.cpp">
+      <Filter>Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\Window.cpp">
+      <Filter>Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Platform\Win\WindowManager.cpp">
+      <Filter>Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\App\Application.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\ApplicationFactory.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\ApplicationManager.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\App\Type.h">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Define.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Debug\Assert.h">
+      <Filter>Base\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Math\MathUtil.h">
+      <Filter>Base\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Mem\Factory.h">
+      <Filter>Base\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Util\Singleton.h">
+      <Filter>Base\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Mem\TreeNode.h">
+      <Filter>Base\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Obj\Button.h">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Obj\CheckBox.h">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Obj\RadioButton.h">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Obj\WindowFrame.h">
+      <Filter>Platform\Win\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\FrameLayout.h">
+      <Filter>Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Type.h">
+      <Filter>Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\Window.h">
+      <Filter>Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\WindowFactory.h">
+      <Filter>Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Platform\Win\WindowManager.h">
+      <Filter>Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\main.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
