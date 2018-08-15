@@ -2,6 +2,10 @@
 #include <App/ApplicationManager.h>
 #include <App/ApplicationFactory.h>
 #include <Platform/Win/Obj/WindowFrame.h>
+#include <Platform/Win/Obj/Button.h>
+#include <Platform/Win/Obj/RadioButton.h>
+#include <Platform/Win/Obj/CheckBox.h>
+#include <Platform/Win/Obj/TextBox.h>
 
 
 //*********************************************************
@@ -34,16 +38,41 @@ protected:
 		win::WindowManager::Initialize();
 		win::WindowManager::GetInstance().Register(_param.h_instance, _param.h_prev_instance, _param.lp_cmd_line, _param.n_cmd_show);
 
-		win::WindowFrame::CreateWindowParam create_param;
-		create_param.class_name = L"ABC";
-		create_param.title_name = L"ABC";
-		auto parent_ptr = win::WindowManager::GetInstance().CreateWindowObject(create_param);
 
-		create_param.class_name = L"DEF";
-		create_param.title_name = L"DEF";
-		create_param.parent_ptr = parent_ptr;
-		create_param.child_type = win::ChildType::CHILD_POPUP;
-		win::WindowManager::GetInstance().CreateWindowObject(create_param);
+		std::shared_ptr<win::Window> ptr;
+		{
+			win::WindowFrame::CreateWindowParam create_param;
+			create_param.class_name = L"ABC";
+			create_param.title_name = L"ABC";
+			create_param.rect = win::Window::SD_SIZE;
+
+			ptr = win::WindowManager::GetInstance().CreateWindowObject(create_param);
+		}
+		{
+			win::RadioButton::CreateWindowParam create_param;
+			create_param.title_name = L"DEF";
+			create_param.rect.SetLeftUpOrigin(100, 40);
+			create_param.parent_ptr = ptr;
+			create_param.child_type = win::ChildType::CHILD_CHILD;
+			win::WindowManager::GetInstance().CreateWindowObject(create_param);
+		}
+		{
+			win::RadioButton::CreateWindowParam create_param;
+			create_param.title_name = L"11";
+			create_param.rect.SetLeftUpOrigin(100, 40);
+			create_param.rect.ShiftY(40);
+			create_param.parent_ptr = ptr;
+			create_param.child_type = win::ChildType::CHILD_CHILD;
+			win::WindowManager::GetInstance().CreateWindowObject(create_param);
+		}
+		{
+			win::TextBox::CreateWindowParam create_param;
+			create_param.rect.SetLeftUpOrigin(100, 40);
+			create_param.rect.ShiftY(80);
+			create_param.parent_ptr = ptr;
+			create_param.child_type = win::ChildType::CHILD_CHILD;
+			win::WindowManager::GetInstance().CreateWindowObject(create_param);
+		}
 	}
 	virtual int OnFinalize()
 	{

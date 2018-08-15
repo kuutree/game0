@@ -48,7 +48,7 @@ public:
 	WindowManager();
 	~WindowManager();
 	void Register(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show);
-	WindowPtr CreateWindowObject(const CreateWindowParam& create_param);
+	WindowPtr CreateWindowObject(const Window::CreateWindowParam& create_param);
 	bool MessageProcess();
 
 	const EntryInfo& GetEntryInfo() const { return m_entry_info; }

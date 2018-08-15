@@ -31,6 +31,6 @@ FactoryUnit##WINDOW_CLASS FactoryUnit##WINDOW_CLASS::s_instance;
 
 
 namespace win {
-using WindowFactory = base::mem::Factory<std::shared_ptr<Window>, CreateWindowParam, WINDOW_ID_MAX>;
+using WindowFactory = base::mem::Factory<std::shared_ptr<Window>, Window::CreateWindowParamBase, WINDOW_ID_MAX>;
 } //namespace win
 

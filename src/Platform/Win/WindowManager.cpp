@@ -37,7 +37,7 @@ void WindowManager::Register(HINSTANCE h_instance, HINSTANCE h_prev_instance, LP
 
 //=========================================================
 //ウインドウ追加
-WindowManager::WindowPtr WindowManager::CreateWindowObject(const CreateWindowParam& create_param)
+WindowManager::WindowPtr WindowManager::CreateWindowObject(const Window::CreateWindowParam& create_param)
 {
 	WindowPtr ptr = WindowFactory::Create(create_param.class_id, create_param);
 	m_window_ptr_list.push_back(ptr);

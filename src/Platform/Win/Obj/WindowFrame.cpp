@@ -19,7 +19,7 @@ WindowFrame::WindowFrame()
 
 //=========================================================
 //初期化
-void WindowFrame::OnInitialize(const win::CreateWindowParam& param)
+void WindowFrame::OnInitialize(const CreateWindowParamBase& param)
 {
 	Window::OnInitialize(param);
 

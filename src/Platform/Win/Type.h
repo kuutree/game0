@@ -11,11 +11,6 @@
 
 
 namespace win {
-//=========================================================
-//前方宣言
-class Window;
-
-
 //*********************************************************
 //WindowId
 //*********************************************************
@@ -23,6 +18,10 @@ enum WindowId : size_t
 {
 	WINDOW_ID,
 	WINDOW_FRAME_ID,
+	WINDOW_BUTTON_ID,
+	WINDOW_CHECK_BOX_ID,
+	WINDOW_RADIO_BUTTON_ID,
+	WINDOW_TEXT_BOX_ID,
 	WINDOW_ID_MAX,
 };
 
@@ -79,6 +78,12 @@ struct Rect
 		bottom = pos.GetHeight();
 		left = top = 0;
 	}
+	void SetLeftUpOrigin(const T& width, const T& height)
+	{
+		right = width;
+		bottom = height;
+		left = top = 0;
+	}
 	void ShiftX(T x) { left += x, right += x; }
 	void ShiftY(T y) { top += y, bottom += y; }
 	T GetWidth() const { return right - left; }
@@ -88,49 +93,5 @@ struct Rect
 	void RectToRECT(RECT* p_dst) const { p_dst->left = left, p_dst->right = right, p_dst->top = top, p_dst->bottom = bottom; }
 };
 using RectInt = Rect<int>;
-
-
-//*********************************************************
-//CreateWindowParam
-//*********************************************************
-struct CreateWindowParam
-{
-	std::shared_ptr<Window> parent_ptr;
-	size_t					class_id   = WindowId::WINDOW_ID;
-	ChildType				child_type = ChildType::CHILD_NONE;
-	int						show_mode  = 0;
-	HINSTANCE				h_instance = nullptr;
-	virtual ~CreateWindowParam() { /*何もしない*/ }
-	template<class T> const T& Cast() const { return static_cast<const T&>(*this); }
-
-	//base::math::RectInt		area;
-	//union
-	//{
-	//	struct
-	//	{
-	//		bool is_tab_stop;	///< タブ入力でフォーカスがあう
-	//		bool is_caption;	///< タイトルを表示するか
-	//		bool is_frame;		///< フレームを表示するか
-	//		bool is_close;		///< 閉じるボタンをつけるか
-	//		bool is_adjust;		///< areaで指定した値をクライアント領域を現す領域扱いとし、ウィンドウ位置とサイズを調節する
-	//		const wchar_t* title;
-	//	} overlap;
-	//	struct
-	//	{
-	//		bool is_tab_stop;	///< タブ入力でフォーカスがあう
-	//		bool is_draw_edge;	///< 境界線描画
-	//		bool is_multi_line;	///< 複数行表示	+ 縦スクロール
-	//		bool is_read_only;	///< 読み込みのみ
-	//		bool is_number_only;///< 数字入力のみ
-	//		Position position;	///< 文字表示位置
-	//	} edit;
-	//	struct
-	//	{
-	//		bool is_tab_stop;	///< タブ入力でフォーカスがあう
-	//	} button;
-	//};
-	//
-	//CreateInfo(WndType _type) { SetDefaultParam(_type); }
-	//void SetDefaultParam(WndType _type);	///< 指定したウインドウタイプで使用されるパラメータの初期化する
-};
 } //namespace win
+

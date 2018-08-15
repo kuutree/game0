@@ -23,6 +23,21 @@ public:
 	static const RectInt SD_SIZE;
 	static const RectInt HD_SIZE;
 	static const RectInt FULL_HD_SIZE;
+	//*********************************************************
+	//CreateWindowParamBase
+	//*********************************************************
+	struct CreateWindowParamBase
+	{
+		std::shared_ptr<Window> parent_ptr;
+		size_t					class_id   = WindowId::WINDOW_ID;
+		ChildType				child_type = ChildType::CHILD_NONE;
+		int						show_mode  = 0;
+		RectInt					rect	   = FULL_HD_SIZE;
+
+		virtual ~CreateWindowParamBase() { /*何もしない*/ }
+		template<class T> const T& Cast() const { return static_cast<const T&>(*this); }
+	};
+	using CreateWindowParam = CreateWindowParamBase;
 protected:
 	//*********************************************************
 	//CreateWindowArg	ウインドウ作成関数の引数
@@ -47,7 +62,7 @@ public:
 	//=========================================================
 	//func
 	virtual ~Window();
-	void Initialize(const win::CreateWindowParam& param);
+	void Initialize(const CreateWindowParamBase& param);
 	void Finalize();
 	void Message(WORD word);
 	void Show(ShowType show_type);	///< 表示設定変更
@@ -60,8 +75,9 @@ protected:
 	uint32_t QueryStyleSettingChild(NodePtr parent_ptr, ChildType child_type) const;
 	void	 Show(int show_type);
 
-	virtual void OnInitialize(const win::CreateWindowParam& param) {}
+	virtual void OnInitialize(const CreateWindowParamBase& param) {}
 	virtual void OnFinalize();
 	virtual void OnMessage(WORD word) {}
 };
 } //namespace win
+
