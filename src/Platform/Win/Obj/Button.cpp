@@ -31,6 +31,8 @@ void Button::OnInitialize(const CreateWindowParamBase& param)
 
 	DB_ASSERT(_param.parent_ptr && _param.child_type == ChildType::CHILD_CHILD);
 
+	SetCategory(CATEGORY_BUTTON);
+
 	//=========================================================
 	//ウインドウ作成パラメータ設定
 	CreateWindowArg arg;
@@ -54,7 +56,7 @@ void Button::OnInitialize(const CreateWindowParamBase& param)
 	{
 		if (_param.parent_ptr)
 			_param.parent_ptr->PushChild(GetSelf());
-		Show(ShowType::SHOW_SHOW);		
+		Show(ShowType::SHOW_SHOW);
 	}
 }
 

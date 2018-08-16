@@ -4,23 +4,14 @@
 
 namespace win {
 //=========================================================
-//コンストラクタ
-WindowManager::WindowManager()
-{
-}
-
-
-//=========================================================
 //デストラクタ
 WindowManager::~WindowManager()
 {
-	WindowPtrList::iterator ite = m_window_ptr_list.begin();
-
-	while (ite != m_window_ptr_list.end())
+	if (m_root_window_ptr)
 	{
-		(*ite)->Finalize();
-		ite = m_window_ptr_list.erase(ite);
-	}	
+		m_root_window_ptr->Finalize();
+		m_root_window_ptr.reset();
+	}
 }
 
 
@@ -37,10 +28,15 @@ void WindowManager::Register(HINSTANCE h_instance, HINSTANCE h_prev_instance, LP
 
 //=========================================================
 //ウインドウ追加
-WindowManager::WindowPtr WindowManager::CreateWindowObject(const Window::CreateWindowParam& create_param)
+Window::NodePtr WindowManager::CreateWindowObject(const Window::CreateWindowParam& create_param)
 {
-	WindowPtr ptr = WindowFactory::Create(create_param.class_id, create_param);
-	m_window_ptr_list.push_back(ptr);
+	Window::NodePtr ptr = WindowFactory::Create(create_param.class_id, create_param);
+
+	if (!create_param.parent_ptr)
+	{
+		DB_ASSERT(!m_root_window_ptr);
+		m_root_window_ptr = ptr;
+	}
 
 	return ptr;
 }
@@ -50,7 +46,7 @@ WindowManager::WindowPtr WindowManager::CreateWindowObject(const Window::CreateW
 //メッセージ処理
 bool WindowManager::MessageProcess()
 {
-	if (m_window_ptr_list.size() == 0)	PostQuitMessage(0);
+	if (!m_root_window_ptr)	PostQuitMessage(0);
 
 	MSG msg;
 	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE)) {

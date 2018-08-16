@@ -22,6 +22,8 @@ void TextBox::OnInitialize(const CreateWindowParamBase& param)
 
 	DB_ASSERT(_param.parent_ptr && _param.child_type == ChildType::CHILD_CHILD);
 
+	SetCategory(CATEGORY_TEXT_BOX);
+
 	//=========================================================
 	//ウインドウ作成パラメータ設定
 	CreateWindowArg arg;
@@ -44,6 +46,7 @@ void TextBox::OnInitialize(const CreateWindowParamBase& param)
 	if (_param.is_multi_line)	arg.style |= ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN;
 	if (_param.is_read_only)	arg.style |= ES_READONLY;
 	if (_param.is_number_only)	arg.style |= ES_NUMBER;
+	arg.style |= QueryStyleSettingChild(_param.parent_ptr, _param.child_type);
 
 	if (Create(arg))
 	{

@@ -16,13 +16,28 @@ namespace win {
 //*********************************************************
 enum WindowId : size_t
 {
-	WINDOW_ID,
+	WINDOW_NONE_ID,
 	WINDOW_FRAME_ID,
 	WINDOW_BUTTON_ID,
 	WINDOW_CHECK_BOX_ID,
 	WINDOW_RADIO_BUTTON_ID,
 	WINDOW_TEXT_BOX_ID,
 	WINDOW_ID_MAX,
+};
+
+
+//*********************************************************
+//Category
+//*********************************************************
+enum Category : size_t
+{
+	CATEGORY_NONE,
+	CATEGORY_FRAME,
+	CATEGORY_BUTTON,
+	CATEGORY_CHECK_BOX,
+	CATEGORY_RADIO_BUTTON,
+	CATEGORY_TEXT_BOX,
+	CATEGORY_MAX,
 };
 
 

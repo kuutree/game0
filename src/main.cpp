@@ -45,7 +45,10 @@ protected:
 			create_param.class_name = L"ABC";
 			create_param.title_name = L"ABC";
 			create_param.rect = win::Window::SD_SIZE;
-
+			create_param.rect.ShiftX(win::Window::FULL_HD_SIZE.right / 4);
+			create_param.rect.ShiftY(win::Window::FULL_HD_SIZE.bottom / 4);
+			create_param.is_caption = true;
+			create_param.is_close = true;
 			ptr = win::WindowManager::GetInstance().CreateWindowObject(create_param);
 		}
 		{
@@ -91,6 +94,7 @@ protected:
 		exit(error_code);
 	}
 };
+
 
 REGISTER_APPLICATION_FACTORY_UNIT(WindowApplication, WindowApplication::GetClassId());
 

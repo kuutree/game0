@@ -31,6 +31,7 @@ void WindowFrame::OnInitialize(const CreateWindowParamBase& param)
 	m_class_name = _param.class_name;
 	m_title_name = _param.title_name;
 	m_hinstance  = entry_info.h_instance;
+	SetCategory(CATEGORY_FRAME);
 
 	//=========================================================
 	//ウインドウ作成パラメータ設定
@@ -125,17 +126,18 @@ LRESULT CALLBACK WindowFrame::_WndProc(HWND h_wnd, UINT message, WPARAM w_param,
 			WORD ctrl_command  = HIWORD(w_param);
 			//=========================================================
 			//ラムダ式	検索用
-			auto func = [h_command_wnd](const NodeType* p_node) -> bool
+			auto func = [h_command_wnd, ctrl_command](NodeType* p_node) -> bool
 			{
-				return h_command_wnd == p_node->GetHandle();
+				if (h_command_wnd == p_node->GetHandle())
+				{
+					p_node->Message(ctrl_command);
+					return false;
+				}
+				return true;
 			};
 
 			WindowFrame* wnd_frame  = (WindowFrame*)GetWindowLongPtr(h_wnd, GWLP_USERDATA);
-			//=========================================================
-			//子ウインドウに通知
-			NodePtr ptr = wnd_frame->FindNode(func);
-			if (ptr)  ptr->Message(ctrl_command);
-		}
+			wnd_frame->Foreach(func);		}
 		break;
 	//=========================================================
 	//WM_CLOSE

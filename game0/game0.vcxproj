@@ -133,6 +133,7 @@
     <ClCompile Include="..\src\Platform\Win\Obj\Button.cpp" />
     <ClCompile Include="..\src\Platform\Win\Obj\CheckBox.cpp" />
     <ClCompile Include="..\src\Platform\Win\Obj\RadioButton.cpp" />
+    <ClCompile Include="..\src\Platform\Win\Obj\TextBox.cpp" />
     <ClCompile Include="..\src\Platform\Win\Obj\WindowFrame.cpp" />
     <ClCompile Include="..\src\Platform\Win\Window.cpp" />
     <ClCompile Include="..\src\Platform\Win\WindowManager.cpp" />
@@ -153,6 +154,7 @@
     <ClInclude Include="..\src\Platform\Win\Obj\Button.h" />
     <ClInclude Include="..\src\Platform\Win\Obj\CheckBox.h" />
     <ClInclude Include="..\src\Platform\Win\Obj\RadioButton.h" />
+    <ClInclude Include="..\src\Platform\Win\Obj\TextBox.h" />
     <ClInclude Include="..\src\Platform\Win\Obj\WindowFrame.h" />
     <ClInclude Include="..\src\Platform\Win\Type.h" />
     <ClInclude Include="..\src\Platform\Win\Window.h" />

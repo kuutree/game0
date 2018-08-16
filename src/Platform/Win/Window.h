@@ -28,15 +28,25 @@ public:
 	//*********************************************************
 	struct CreateWindowParamBase
 	{
-		std::shared_ptr<Window> parent_ptr;
-		size_t					class_id   = WindowId::WINDOW_ID;
-		ChildType				child_type = ChildType::CHILD_NONE;
-		int						show_mode  = 0;
-		RectInt					rect	   = FULL_HD_SIZE;
+		NodePtr		parent_ptr;
+		size_t		class_id   = GetClassId();
+		ChildType	child_type = ChildType::CHILD_NONE;
+		int			show_mode  = 0;
+		RectInt		rect	   = FULL_HD_SIZE;
+		std::wstring tag;
 
 		virtual ~CreateWindowParamBase() { /*何もしない*/ }
 		template<class T> const T& Cast() const { return static_cast<const T&>(*this); }
 	};
+	//*********************************************************
+	//Property
+	//*********************************************************
+	struct Property
+	{
+		Category category = Category::CATEGORY_NONE;
+	};
+	//=========================================================
+	//using
 	using CreateWindowParam = CreateWindowParamBase;
 protected:
 	//*********************************************************
@@ -57,7 +67,9 @@ protected:
 private:
 	//=========================================================
 	//val
-	HWND m_h_wndow;		///< ウインドウハンドル
+	HWND		 m_h_wndow;		///< ウインドウハンドル
+	std::wstring m_tag;			///< 検索用ウインドウ名
+	Property     m_property;	///< プロパティ
 public:
 	//=========================================================
 	//func
@@ -67,14 +79,16 @@ public:
 	void Message(WORD word);
 	void Show(ShowType show_type);	///< 表示設定変更
 
-	HWND		  GetHandle() const { return m_h_wndow; }
-	static size_t GetClassId()		{ return WINDOW_ID; }
+	HWND				GetHandle() const	{ return m_h_wndow; }
+	const std::wstring& GetTag() const		{ return m_tag; }
+	const Property&     GetProperty() const { return m_property; }
+	static size_t		GetClassId()		{ return WINDOW_NONE_ID; }
 protected:
 	//Window作成
 	bool	 Create(const CreateWindowArg& param);
 	uint32_t QueryStyleSettingChild(NodePtr parent_ptr, ChildType child_type) const;
 	void	 Show(int show_type);
-
+	void	 SetCategory(Category category) { m_property.category = category; }
 	virtual void OnInitialize(const CreateWindowParamBase& param) {}
 	virtual void OnFinalize();
 	virtual void OnMessage(WORD word) {}

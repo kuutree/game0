@@ -23,6 +23,7 @@ Window::~Window()
 //初期化
 void Window::Initialize(const CreateWindowParamBase& param)
 {
+	m_tag = param.tag;
 	OnInitialize(param);
 }
 

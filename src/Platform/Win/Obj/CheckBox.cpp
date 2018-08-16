@@ -39,6 +39,7 @@ void CheckBox::OnInitialize(const CreateWindowParamBase& param)
 	//=========================================================
 	//パラメータ設定
 	m_is_enable_indeterminate = _param.is_enable_indeterminate;
+	SetCategory(CATEGORY_CHECK_BOX);
 
 	//=========================================================
 	//ウインドウ作成パラメータ設定

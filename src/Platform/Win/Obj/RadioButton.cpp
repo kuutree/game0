@@ -37,6 +37,8 @@ void RadioButton::OnInitialize(const CreateWindowParamBase& param)
 
 	DB_ASSERT(_param.parent_ptr && _param.child_type == ChildType::CHILD_CHILD);
 
+	SetCategory(CATEGORY_RADIO_BUTTON);
+
 	//=========================================================
 	//ウインドウ作成パラメータ設定
 	CreateWindowArg arg;

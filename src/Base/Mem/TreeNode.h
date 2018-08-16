@@ -39,7 +39,7 @@ public:
 	//ノード操作
 	void PushChild(NodePtr child_ptr);
 	void PopChild(NodePtr child_ptr);
-	template<class F> NodePtr FindNode(F& func);
+	template<class F> bool Foreach(F& func);
 
 	//アクセサー
 	NodePtr		 GetSelf()		   { return shared_from_this(); }
@@ -93,17 +93,15 @@ void TreeNode<T>::PopChild(NodePtr child_ptr)
 //検索
 template<typename T>
 template <typename F>
-typename TreeNode<T>::NodePtr TreeNode<T>::FindNode(F& func)
-{
-	if (func(static_cast<const NodeType*>(this)))	return GetSelf();
+bool TreeNode<T>::Foreach(F& func)
+{	
+	if (!func(static_cast<NodeType*>(this)))	return false;
 
 	for (NodePtr child_ptr : m_child_ptr_list)
-	{
-		NodePtr result = child_ptr->FindNode(func);
-		if (result)
-			return result;
-	}
-	return NodePtr();
+		if (!child_ptr->Foreach(func))
+			return false;
+
+	return true;
 }
 } //namespace mem
 } //namespace base
