@@ -18,11 +18,16 @@ void CheckBox::SetState(State state)
 {
 	DB_ASSERT(m_is_enable_indeterminate || state != STATE_INDETERMINATE);
 
-	if (m_state != state)
-	{
-		SendMessage(GetHandle(), BM_SETCHECK, state, 0);
-		m_state = state;
-	}
+	SendMessage(GetHandle(), BM_SETCHECK, state, 0);
+}
+
+
+//=========================================================
+//チェック状態を取得
+CheckBox::State CheckBox::GetState() const
+{
+	LRESULT result = SendMessage(GetHandle(), BM_GETCHECK, 0, 0);
+	return (State)result;
 }
 
 
@@ -78,8 +83,8 @@ void CheckBox::OnMessage(WORD word)
 	{
 	case BN_CLICKED:
 		{
-			LRESULT result = SendMessage(GetHandle(), BM_GETCHECK, 0, 0);
-			m_state = (State)result;
+			ControllerPtr ptr = GetControllerPtr();
+			if (ptr)	GetControllerPtr()->OnClick(this);
 		}
 		break;
 	default:  break;	//何もしない

@@ -16,13 +16,17 @@ REGISTER_WINDOW_FACTORY_UNIT(RadioButton, RadioButton::GetClassId());
 //チェック状態を変更
 void RadioButton::SetCheck(bool is_enable)
 {
-	if (m_is_check != is_enable)
-	{
-		if (is_enable)	SendMessage(GetHandle(), BM_SETCHECK, BST_CHECKED, 0);
-		else			SendMessage(GetHandle(), BM_SETCHECK, BST_UNCHECKED, 0);
+	if (is_enable)	SendMessage(GetHandle(), BM_SETCHECK, BST_CHECKED, 0);
+	else			SendMessage(GetHandle(), BM_SETCHECK, BST_UNCHECKED, 0);
+}
 
-		m_is_check = is_enable;
-	}
+
+//=========================================================
+//チェック状態を取得
+bool RadioButton::GetCheck() const
+{
+	LRESULT result = SendMessage(GetHandle(), BM_GETCHECK, 0, 0);
+	return (result == BST_CHECKED);
 }
 
 
@@ -75,8 +79,8 @@ void RadioButton::OnMessage(WORD word)
 	{
 	case BN_CLICKED:
 		{
-			LRESULT result = SendMessage(GetHandle(), BM_GETCHECK, 0, 0);
-			m_is_check = (result == BST_CHECKED);
+			ControllerPtr ptr = GetControllerPtr();
+			if (ptr)	GetControllerPtr()->OnClick(this);
 		}
 		break;
 	default:  break;	//何もしない

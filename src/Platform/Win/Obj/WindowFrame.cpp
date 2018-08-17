@@ -137,7 +137,8 @@ LRESULT CALLBACK WindowFrame::_WndProc(HWND h_wnd, UINT message, WPARAM w_param,
 			};
 
 			WindowFrame* wnd_frame  = (WindowFrame*)GetWindowLongPtr(h_wnd, GWLP_USERDATA);
-			wnd_frame->Foreach(func);		}
+			wnd_frame->Foreach(func);		
+		}
 		break;
 	//=========================================================
 	//WM_CLOSE

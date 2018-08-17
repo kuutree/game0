@@ -24,15 +24,11 @@ public:
 			class_id = GetClassId();
 		}
 	};
-private:
-	//========================================================
-	//val
-	bool m_is_check = false;
 public:
 	//========================================================
 	//func
 	void SetCheck(bool is_enable);					///< チェック状態を変更
-	bool GetCheck() const { return m_is_check; }	///< チェック状態を取得
+	bool GetCheck() const;							///< チェック状態を取得
 	static size_t GetClassId() { return WINDOW_RADIO_BUTTON_ID; }
 protected:
 	virtual void OnInitialize(const CreateWindowParamBase& param) override;

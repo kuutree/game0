@@ -43,13 +43,12 @@ public:
 private:
 	//========================================================
 	//val
-	bool  m_is_enable_indeterminate = false;
-	State m_state					= STATE_UNCHECK;
+	bool m_is_enable_indeterminate = false;
 public:
 	//========================================================
 	//func
-	void SetState(State state);						///< チェック状態をアプリケーション側から変更
-	State GetState() const { return m_state;  }		///< チェック状態を取得
+	void SetState(State state);		///< チェック状態をアプリケーション側から変更
+	State GetState() const;			///< チェック状態を取得
 	static size_t GetClassId() { return WINDOW_CHECK_BOX_ID; }
 protected:
 	virtual void OnInitialize(const CreateWindowParamBase& param) override;

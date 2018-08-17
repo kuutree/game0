@@ -13,14 +13,6 @@ REGISTER_WINDOW_FACTORY_UNIT(Button, Button::GetClassId());
 
 
 //=========================================================
-//クリック状態クリア
-void Button::ClearClick()
-{
-	m_is_clicked = false;
-}
-
-
-//=========================================================
 //初期化
 void Button::OnInitialize(const CreateWindowParamBase& param)
 {
@@ -68,7 +60,10 @@ void Button::OnMessage(WORD word)
 	switch (word)
 	{
 	case BN_CLICKED:
-		m_is_clicked = true;
+		{
+			ControllerPtr ptr = GetControllerPtr();
+			if (ptr)	GetControllerPtr()->OnClick(this);
+		}
 		break;
 	default:  break;	//何もしない
 	}

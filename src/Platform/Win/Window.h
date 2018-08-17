@@ -39,6 +39,15 @@ public:
 		template<class T> const T& Cast() const { return static_cast<const T&>(*this); }
 	};
 	//*********************************************************
+	//Controller
+	//*********************************************************
+	class Controller
+	{
+	public:
+		virtual ~Controller() { /*何もしない*/ }
+		virtual void OnClick(Window*) = 0;
+	};
+	//*********************************************************
 	//Property
 	//*********************************************************
 	struct Property
@@ -48,6 +57,7 @@ public:
 	//=========================================================
 	//using
 	using CreateWindowParam = CreateWindowParamBase;
+	using ControllerPtr	    = std::shared_ptr<Controller>;
 protected:
 	//*********************************************************
 	//CreateWindowArg	ウインドウ作成関数の引数
@@ -70,6 +80,7 @@ private:
 	HWND		 m_h_wndow;		///< ウインドウハンドル
 	std::wstring m_tag;			///< 検索用ウインドウ名
 	Property     m_property;	///< プロパティ
+	ControllerPtr m_controller_ptr;
 public:
 	//=========================================================
 	//func
@@ -82,6 +93,7 @@ public:
 	HWND				GetHandle() const	{ return m_h_wndow; }
 	const std::wstring& GetTag() const		{ return m_tag; }
 	const Property&     GetProperty() const { return m_property; }
+	ControllerPtr		GetControllerPtr()	{ return m_controller_ptr; }
 	static size_t		GetClassId()		{ return WINDOW_NONE_ID; }
 protected:
 	//Window作成
