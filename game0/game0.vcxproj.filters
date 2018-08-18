@@ -40,6 +40,9 @@
     <Filter Include="Platform\Win\Obj">
       <UniqueIdentifier>{9e64eeb3-a667-4618-877a-5122d95d44ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphic">
+      <UniqueIdentifier>{7aabd91c-2b10-4db6-8bdc-d42ae7ea017a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\App\Application.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\src\Platform\Win\Obj\TextBox.cpp">
       <Filter>Platform\Win\Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphic\GraphicManager.cpp">
+      <Filter>Graphic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +148,12 @@
     </ClInclude>
     <ClInclude Include="..\src\Platform\Win\Obj\TextBox.h">
       <Filter>Platform\Win\Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphic\GraphicManager.h">
+      <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphic\DirectXPtr.h">
+      <Filter>Graphic</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

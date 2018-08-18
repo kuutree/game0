@@ -58,6 +58,15 @@ void TextBox::OnInitialize(const CreateWindowParamBase& param)
 
 
 //=========================================================
+//テキスト設定
+bool TextBox::SetText(const wchar_t* text)
+{
+	int result = SetWindowText(GetHandle(), text);
+	return (result != 0);
+}
+
+
+//=========================================================
 //メッセージ
 void TextBox::OnMessage(WORD word)
 {

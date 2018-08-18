@@ -2,10 +2,7 @@
 #include <App/ApplicationManager.h>
 #include <App/ApplicationFactory.h>
 #include <Platform/Win/Obj/WindowFrame.h>
-#include <Platform/Win/Obj/Button.h>
-#include <Platform/Win/Obj/RadioButton.h>
-#include <Platform/Win/Obj/CheckBox.h>
-#include <Platform/Win/Obj/TextBox.h>
+#include <Graphic/GraphicManager.h>
 
 
 //*********************************************************
@@ -37,9 +34,10 @@ protected:
 
 		win::WindowManager::Initialize();
 		win::WindowManager::GetInstance().Register(_param.h_instance, _param.h_prev_instance, _param.lp_cmd_line, _param.n_cmd_show);
+		
+		gr::GraphicManager::Initialize();
 
-
-		std::shared_ptr<win::Window> ptr;
+		win::Window::NodePtr ptr;
 		{
 			win::WindowFrame::CreateWindowParam create_param;
 			create_param.class_name = L"ABC";
@@ -51,34 +49,15 @@ protected:
 			create_param.is_close = true;
 			ptr = win::WindowManager::GetInstance().CreateWindowObject(create_param);
 		}
-		{
-			win::RadioButton::CreateWindowParam create_param;
-			create_param.title_name = L"DEF";
-			create_param.rect.SetLeftUpOrigin(100, 40);
-			create_param.parent_ptr = ptr;
-			create_param.child_type = win::ChildType::CHILD_CHILD;
-			win::WindowManager::GetInstance().CreateWindowObject(create_param);
-		}
-		{
-			win::RadioButton::CreateWindowParam create_param;
-			create_param.title_name = L"11";
-			create_param.rect.SetLeftUpOrigin(100, 40);
-			create_param.rect.ShiftY(40);
-			create_param.parent_ptr = ptr;
-			create_param.child_type = win::ChildType::CHILD_CHILD;
-			win::WindowManager::GetInstance().CreateWindowObject(create_param);
-		}
-		{
-			win::TextBox::CreateWindowParam create_param;
-			create_param.rect.SetLeftUpOrigin(100, 40);
-			create_param.rect.ShiftY(80);
-			create_param.parent_ptr = ptr;
-			create_param.child_type = win::ChildType::CHILD_CHILD;
-			win::WindowManager::GetInstance().CreateWindowObject(create_param);
-		}
+
+		gr::GraphicManager::CreateDeviceParam device_param;
+		device_param.window_ptr = ptr;
+
+		gr::GraphicManager::GetInstance().CreateDevice(device_param);
 	}
 	virtual int OnFinalize()
 	{
+		gr::GraphicManager::Finalize();
 		win::WindowManager::Finalize();
 		return app::APPLICATION_SUCCESS;
 	}
@@ -86,6 +65,8 @@ protected:
 	{
 		while (win::WindowManager::GetInstance().MessageProcess())
 		{
+			gr::GraphicManager::GetInstance().BeginRender();
+			gr::GraphicManager::GetInstance().EndRender();
 		}
 		return app::APPLICATION_SUCCESS;
 	}

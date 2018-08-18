@@ -128,6 +128,7 @@
     <ClCompile Include="..\src\App\Application.cpp" />
     <ClCompile Include="..\src\App\ApplicationManager.cpp" />
     <ClCompile Include="..\src\Base\Math\MathUtil.cpp" />
+    <ClCompile Include="..\src\Graphic\GraphicManager.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\Platform\Win\FrameLayout.cpp" />
     <ClCompile Include="..\src\Platform\Win\Obj\Button.cpp" />
@@ -149,6 +150,8 @@
     <ClInclude Include="..\src\Base\Mem\Factory.h" />
     <ClInclude Include="..\src\Base\Mem\TreeNode.h" />
     <ClInclude Include="..\src\Base\Util\Singleton.h" />
+    <ClInclude Include="..\src\Graphic\DirectXPtr.h" />
+    <ClInclude Include="..\src\Graphic\GraphicManager.h" />
     <ClInclude Include="..\src\main.h" />
     <ClInclude Include="..\src\Platform\Win\FrameLayout.h" />
     <ClInclude Include="..\src\Platform\Win\Obj\Button.h" />

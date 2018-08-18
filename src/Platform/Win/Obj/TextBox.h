@@ -40,6 +40,7 @@ private:
 public:
 	//========================================================
 	//func
+	bool SetText(const wchar_t* text);
 	static size_t GetClassId() { return WINDOW_TEXT_BOX_ID; }
 protected:
 	virtual void OnInitialize(const CreateWindowParamBase& param) override;
