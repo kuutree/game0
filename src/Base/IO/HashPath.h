@@ -33,6 +33,7 @@ public:
 		std::transform(m_path.begin(), m_path.end(), m_path.begin(), toupper);
 		m_hash_code = base::util::FNV1Hash(m_path.c_str(), sizeof(wchar_t) * m_path.length());
 	}
+	const wchar_t* GetPath() const { return m_path.c_str(); }
 	bool operator==(const HashPath& target) const { return _Cmp(target) == 0; }
 	bool operator!=(const HashPath& target) const { return _Cmp(target) != 0; }
 	bool operator< (const HashPath& target) const { return _Cmp(target) < 0; }

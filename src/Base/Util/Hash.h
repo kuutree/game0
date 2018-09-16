@@ -8,7 +8,7 @@ namespace base {
 namespace util {
 //========================================================
 //FNV-1ƒnƒbƒVƒ…ŠÖ”
-uint32 FNV1Hash(const void* p_buff, size_t size)
+inline uint32 FNV1Hash(const void* p_buff, size_t size)
 {
 	const uint32 OFFSET_BASIS = 2166136261;
 	const uint32 FNV_32_PRIME = 16777619;

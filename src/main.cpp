@@ -1,8 +1,12 @@
-﻿#include <Platform/Win/WindowManager.h>
+﻿#include <Base/Mem/New.h>
+#include <Platform/Win/WindowManager.h>
 #include <App/ApplicationManager.h>
 #include <App/ApplicationFactory.h>
 #include <Platform/Win/Obj/WindowFrame.h>
 #include <Graphic/GraphicManager.h>
+#include <Base/IO/IOSystem.h>
+
+#include <Base/IO/HashPath.h>
 
 
 //*********************************************************
@@ -31,7 +35,7 @@ protected:
 	virtual void OnInitialize(const app::CreateApplicationParam& param)
 	{
 		const Param& _param = static_cast<const Param&>(param);
-
+		base::io::IOSystem::Initialize();
 		win::WindowManager::Initialize();
 		win::WindowManager::GetInstance().Register(_param.h_instance, _param.h_prev_instance, _param.lp_cmd_line, _param.n_cmd_show);
 		
@@ -59,6 +63,7 @@ protected:
 	{
 		gr::GraphicManager::Finalize();
 		win::WindowManager::Finalize();
+		base::io::IOSystem::Finalize();
 		return app::APPLICATION_SUCCESS;
 	}
 	virtual int OnRun()
@@ -79,9 +84,9 @@ protected:
 
 REGISTER_APPLICATION_FACTORY_UNIT(WindowApplication, WindowApplication::GetClassId());
 
-
 int WINAPI WinMain(HINSTANCE h_instance, HINSTANCE h_prev_instance, LPSTR lp_cmd_line, int n_cmd_show)
 {
+	base::io::HashPath a(L"main.cpp");
 	WindowApplication::Param param(h_instance, h_prev_instance, lp_cmd_line, n_cmd_show);
 	app::ApplicationManager::Initialize();
 	int end_code = app::ApplicationManager::GetInstance().Startup(param);
