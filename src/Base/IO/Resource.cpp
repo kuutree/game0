@@ -19,6 +19,7 @@ Resource::Resource()
 bool Resource::Initialize(const InitParamBase& init_param)
 {
 	Finalize();
+	OnInitialize(init_param);
 
 	IO io;
 	if (!io.Open(init_param.path.GetPath(), IO::OPEN_READ | IO::OPEN_BINARY))	return false;
@@ -27,6 +28,8 @@ bool Resource::Initialize(const InitParamBase& init_param)
 	m_file_buff.Resize(file_size);
 	io.Read(m_file_buff.GetAddr(), file_size);
 	io.Close();
+
+	if (!OnLoadComplete())  return false;
 
 	m_state = STATE_LOAD_COMPLETE;
 
@@ -39,6 +42,7 @@ bool Resource::Initialize(const InitParamBase& init_param)
 void Resource::Finalize()
 {
 	m_state = STATE_NONE;
+	OnFinalize();
 	m_file_buff.Clear();
 }
 

@@ -43,6 +43,15 @@
     <Filter Include="Graphic">
       <UniqueIdentifier>{7aabd91c-2b10-4db6-8bdc-d42ae7ea017a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphic\Shader">
+      <UniqueIdentifier>{b012b808-174c-4c91-a516-f7c1a6d9f645}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\IO">
+      <UniqueIdentifier>{3e0ff2d6-7746-4460-b0e3-8c02bb8d5aa4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Base\Thread">
+      <UniqueIdentifier>{c14e2dde-0e08-4f73-a564-c587d76200b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\App\Application.cpp">
@@ -83,6 +92,30 @@
     </ClCompile>
     <ClCompile Include="..\src\Graphic\GraphicManager.cpp">
       <Filter>Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphic\Shader\VertexShader.cpp">
+      <Filter>Graphic\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Graphic\Shader\PixelShader.cpp">
+      <Filter>Graphic\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\IO\ResourceManager.cpp">
+      <Filter>Base\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\IO\Resource.cpp">
+      <Filter>Base\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\IO\Path.cpp">
+      <Filter>Base\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\IO\IO.cpp">
+      <Filter>Base\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\IO\IOSystem.cpp">
+      <Filter>Base\IO</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Base\Mem\New.cpp">
+      <Filter>Base\Mem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +187,51 @@
     </ClInclude>
     <ClInclude Include="..\src\Graphic\DirectXPtr.h">
       <Filter>Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphic\Shader\PixelShader.h">
+      <Filter>Graphic\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Graphic\Shader\VertexShader.h">
+      <Filter>Graphic\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\IO\ResourceManager.h">
+      <Filter>Base\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\IO\Resource.h">
+      <Filter>Base\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Util\Hash.h">
+      <Filter>Base\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Type.h">
+      <Filter>Base</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\IO\Path.h">
+      <Filter>Base\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\IO\HashPath.h">
+      <Filter>Base\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\IO\IO.h">
+      <Filter>Base\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\IO\IOSystem.h">
+      <Filter>Base\IO</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Util\Bit.h">
+      <Filter>Base\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Mem\Allocator.h">
+      <Filter>Base\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Mem\Buffer.h">
+      <Filter>Base\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Mem\New.h">
+      <Filter>Base\Mem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Base\Thread\CriticalSection.h">
+      <Filter>Base\Thread</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
