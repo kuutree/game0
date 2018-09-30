@@ -6,11 +6,8 @@
 #pragma once
 //=========================================================
 //include
-#include "ResourceId.h"
 #include "HashPath.h"
 #include "../Mem/Buffer.h"
-#include "../Util/Singleton.h"
-#include "../Debug/Assert.h"
 #include <memory>
 
 
@@ -24,6 +21,13 @@ namespace io {
 class Resource
 {
 public:
+	//=========================================================
+	//前方宣言
+	struct InitParamBase;
+	//=========================================================
+	//using
+	using ResourcePtr = std::shared_ptr<Resource>;
+	using InitParam	  = InitParamBase;
 	//*********************************************************
 	//State
 	//*********************************************************
@@ -37,14 +41,26 @@ public:
 	//*********************************************************
 	struct InitParamBase
 	{
-		size_t	 class_id = GetClassId();
-		HashPath path;
+		//=========================================================
+		//using
+		using CreateFunc  = ResourcePtr(*)(const InitParamBase& param);
+		//=========================================================
+		//val
+		CreateFunc create_func;
+		HashPath   path;	
+		//=========================================================
+		//func
 		virtual ~InitParamBase() { /*何もしない*/ }
+
+		template<class T> typename const T::InitParam& Cast() const { return static_cast<typename const T::InitParam&>(*this); }
+		template<class T> static ResourcePtr Create(const InitParamBase& param)
+		{
+			ResourcePtr ptr(new T);
+			if (!ptr->Initialize(param))	return ResourcePtr();
+
+			return ptr;
+		}
 	};
-	//=========================================================
-	//using
-	using ResourcePtr = std::shared_ptr<Resource>;
-	using InitParam	  = InitParamBase;
 private:
 	//=========================================================
 	//val
@@ -61,7 +77,6 @@ public:
 	State		GetStatus() const	{ return m_state; }
 	const char* GetBuff() const		{ return m_file_buff.GetAddr(); }
 	size_t		GetBuffSize() const { return m_file_buff.GetByteSize(); }
-	static size_t GetClassId()		{ return RESOURCE_ID_RESOURCE; }
 protected:
 	virtual bool OnInitialize(const InitParamBase& init_param) { return true;/*何もしない*/ }
 	virtual bool OnLoadComplete() { return true;/*何もしない*/ }

@@ -32,7 +32,9 @@ private:
 public:
 	//=========================================================
 	//func
+	~ResourceManager();
 	Resource::ResourcePtr CreateOrCacheResource(const Resource::InitParamBase& init_param);
+	void Reflesh();
 	bool IsLoadComplete() const;
 };
 } //namespace io
