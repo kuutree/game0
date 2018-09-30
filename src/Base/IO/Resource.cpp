@@ -1,11 +1,17 @@
 ﻿//=========================================================
 //include
 #include "Resource.h"
+#include "ResourceFactory.h"
 #include "IO.h"
 
 
 namespace base {
 namespace io {
+//=========================================================
+//クラス登録
+REGISTER_RESOURCE_FACTORY_UNIT(Resource, Resource::GetClassId());
+
+
 //=========================================================
 //コンストラクタ
 Resource::Resource()

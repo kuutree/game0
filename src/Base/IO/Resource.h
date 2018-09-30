@@ -6,6 +6,7 @@
 #pragma once
 //=========================================================
 //include
+#include "ResourceId.h"
 #include "HashPath.h"
 #include "../Mem/Buffer.h"
 #include "../Util/Singleton.h"
@@ -36,9 +37,14 @@ public:
 	//*********************************************************
 	struct InitParamBase
 	{
+		size_t	 class_id = GetClassId();
 		HashPath path;
 		virtual ~InitParamBase() { /*何もしない*/ }
 	};
+	//=========================================================
+	//using
+	using ResourcePtr = std::shared_ptr<Resource>;
+	using InitParam	  = InitParamBase;
 private:
 	//=========================================================
 	//val
@@ -55,6 +61,7 @@ public:
 	State		GetStatus() const	{ return m_state; }
 	const char* GetBuff() const		{ return m_file_buff.GetAddr(); }
 	size_t		GetBuffSize() const { return m_file_buff.GetByteSize(); }
+	static size_t GetClassId()		{ return RESOURCE_ID_RESOURCE; }
 protected:
 	virtual bool OnInitialize(const InitParamBase& init_param) { return true;/*何もしない*/ }
 	virtual bool OnLoadComplete() { return true;/*何もしない*/ }

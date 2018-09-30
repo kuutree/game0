@@ -24,7 +24,7 @@ class ResourceManager : public util::Singleton<ResourceManager>
 public:
 	//=========================================================
 	//using
-	using PtrMap = std::map<HashPath, std::shared_ptr<Resource>>;
+	using PtrMap = std::map<HashPath, Resource::ResourcePtr>;
 private:
 	//=========================================================
 	//val
@@ -32,7 +32,7 @@ private:
 public:
 	//=========================================================
 	//func
-	std::shared_ptr<Resource> CreateOrCacheResource(const Resource::InitParamBase& init_param);
+	Resource::ResourcePtr CreateOrCacheResource(const Resource::InitParamBase& init_param);
 	bool IsLoadComplete() const;
 };
 } //namespace io
